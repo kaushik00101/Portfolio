@@ -2,6 +2,25 @@
 const video = document.getElementById('bgVideo');
 video.playbackRate = 0.5;
 
+// ---- Mobile Navigation ----
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('nav-btns');
+
+navToggle.addEventListener('click', () => {
+  const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+  navToggle.setAttribute('aria-expanded', String(!isOpen));
+  navToggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+  navLinks.classList.toggle('open', !isOpen);
+});
+
+navLinks.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Open navigation');
+    navLinks.classList.remove('open');
+  });
+});
+
 // ---- Typewriter for Name ----
 const nameText = "Kaushik Kumar Mohanta";
 const nameTarget = document.getElementById('Kaushik');
